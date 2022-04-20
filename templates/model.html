@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Database mamangement system</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="#">Database Managenent System</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="patient.html">Patient</a></li>
+								<li><a href="doctor.html">Doctor</a></li>
+								<li><a href="nurse.html">Nurse</a></li>
+								<li><a href="ambulence.html">Ambulence</a></li>
+								<li><a href="insurence.html">Insurence Conpany</a></li>
+								<li><a href="lab.html">Lab</a></li>
+								<li><a href="other.html">Other Facility</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="#">
+											<h3>Patient</h3>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Doctor</h3>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Nurse</h3>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Ambulence</h3>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Insurence Conpany</h3>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Lab</h3>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<h3>Other Facility</h3>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="#" class="button large fit">Function Not Decide yet...</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">Title</a></h2>
+									</div>
+								</header>
+								<!-- 这是选单 -->
+								<p>Select operation from the list.</p>
+								<select id="mySelect" onchange="myFunction1()">
+  								<option value="null">Please select a operation</option>
+  								<option value="GET">GET</option>
+  								<option value="POST"> POST </option>
+  								<option value="DELETE">DELETE</option>
+								  
+								</select>
+							
+								<!-- 这是返回get方法的文字显示区域 -->
+
+		
+								<form id="search" method="get" action="#">
+									<input type="text" name="query" placeholder="Search" />
+									<p id="searchResult"> search result will display at here</p>
+								</form>
+								<button class="btn btn-outline-primary" onClick="find_ID()" type="button">Submit</button>
+
+								<p id = "test"></p>
+	</body>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+
+
+			<script>
+			
+			
+			function find_ID(){
+
+				var x = document.getElementById("mySelect").value;
+				console.log(x);
+				const val = document.querySelector('input').value;
+				console.log("input is :" + val);				
+				if (x === "GET" || x === "DELETE"){
+					$.ajax({			
+							crossDomain: true,
+							type: x,
+							url : "http://127.0.0.1:8000/Patient/" + val + "/",
+							dataType: "json",
+							success : function (data) {
+									console.log(data);
+									document.getElementById("test").innerHTML = JSON.stringify(data);
+
+									},
+							error:function(error){
+								console.log('Error ${error}')
+							}
+							
+
+					});
+
+				}
+				//POST
+				else{
+
+					$.ajax({			
+							crossDomain: true,
+							type: x,
+							headers: {
+      						  "content-type": "application/json",
+       						},
+							url : "http://127.0.0.1:8000/Patient/",
+							dataType: "json",
+							data: val,
+							success : function (data) {
+									console.log(data);
+									},
+							error:function(error){
+								console.log('Error ${error}')
+							}
+					});			
+				}
+			}
+
+
+  			</script>
+
+	</body>
+</html>

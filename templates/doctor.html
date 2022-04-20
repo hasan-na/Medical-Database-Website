@@ -1,0 +1,516 @@
+<!DOCTYPE HTML>
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Database mamangement system</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="single is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="#">Database Managenent System</a></h1>
+						<nav class="links">
+							<ul>
+								<li><a href="patient.html">Patient</a></li>
+								<li><a href="doctor.html">Doctor</a></li>
+								<li><a href="nurse.html">Nurse</a></li>
+								<li><a href="ambulence.html">Ambulence</a></li>
+								<li><a href="insurence.html">Insurence Conpany</a></li>
+								<li><a href="lab.html">Lab</a></li>
+								<li><a href="other.html">Other Facility</a></li>
+							</ul>
+						</nav>
+						<nav class="main">
+							<ul>
+								<li class="menu">
+									<a class="fa-bars" href="#menu">Menu</a>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Menu -->
+					<section id="menu">
+						<!-- Links -->
+							<section>
+								<ul class="links">
+									<li>
+										<a href="patient.html">
+											<h3>Patient</h3>
+										</a>
+									</li>
+									<li>
+										<a href="doctor.html">
+											<h3>Doctor</h3>
+										</a>
+									</li>
+									<li>
+										<a href="nurse.html">
+											<h3>Nurse</h3>
+										</a>
+									</li>
+									<li>
+										<a href="ambulence.html">
+											<h3>Ambulence</h3>
+										</a>
+									</li>
+									<li>
+										<a href="insurence.html">
+											<h3>Insurence Conpany</h3>
+										</a>
+									</li>
+									<li>
+										<a href="lab.html">
+											<h3>Lab</h3>
+										</a>
+									</li>
+									<li>
+										<a href="other.html">
+											<h3>Other Facility</h3>
+										</a>
+									</li>
+								</ul>
+							</section>
+
+						<!-- Actions -->
+							<section>
+								<ul class="actions stacked">
+									<li><a href="http://127.0.0.1:8000/admin/" class="button large fit">Administrator Page</a></li>
+								</ul>
+							</section>
+
+					</section>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Post -->
+							<article class="post">
+								<header>
+									<div class="title">
+										<h2><a href="#">Doctor</a></h2>
+									</div>
+								</header>
+								<!-- 这是选单 -->
+								<p>Select operation from the list.</p>
+								<select id="mySelect" onchange="myFunction1()">
+  								<option value="null">Please select a operation</option>
+  								<option value="patient-GET">Patient: GET</option>
+								<option value="patient-PUT">Patient: PUT</option>
+								<option value="healthhistory-GET">Health History: GET</option>
+								<option value="healthhistory-POST">Health History: POST</option>
+								<option value="healthhistory-PUT">Health History: PUT</option>
+								<option value="healthhistory-DELETE">Health History: DELETE</option>
+								<option value="diagnosis-GET">Diagnosis: GET</option>
+								<option value="diagnosis-POST">Diagnosis: POST</option>
+								<option value="diagnosis-PUT">Diagnosis: PUT</option>
+
+								  
+								</select>
+							
+								<!-- 这是返回get方法的文字显示区域 -->
+
+		
+								<form id="search" method="get" action="#">
+									<input id = "postInput" type="text" name="query" placeholder="Input" />
+								</form>
+								<li id="searchInput" style="display: none" class="search">
+									<p> Enter the edits below:</p>
+									<form id="search" method="get" action="#">
+										<input id = "editInput" type="text" name="query" placeholder="Enter edits" />
+										<p id="searchResult"> search result will display at here</p>
+									</form>
+								</li>
+								<button class="btn btn-outline-primary" onClick="find_ID()" type="button">Submit</button>
+
+								<p id = "show_result"></p>
+								<button class="btn btn-outline-primary" onClick="find_ID3()" type="button">Get help</button>
+	</body>
+							</article>
+
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+							<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+						<p class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+
+
+			<script>
+			
+			function myFunction1() {
+				var x = document.getElementById("mySelect").value;
+				if (x == "patient-PUT" || x == "healthhistory-PUT" || x == "diagnosis-PUT"){
+					searchInput.style.display = "block";
+					getResult.style.display = "none";
+					setInput1.style.display = "none";
+					setInput2.style.display = "none";
+				}
+				else{
+					searchInput.style.display = "none";
+					getResult.style.display = "none";
+					setInput1.style.display = "none";
+					setInput2.style.display = "none";
+				}
+			}
+			function find_ID3(){
+				//alert("...");
+				var x = document.getElementById("mySelect").value;//method selection//
+				const val = document.querySelector('input').value;//primary key//
+				if (x == "healthhistory-POST"){
+					document.getElementById("postInput").value = "{\"HID\":null,\"HisDiag\":\"null\",\"VacRec\":\"null\",\"ExamRec\":\"null\",\"OFAddress\":[],\"Exam_id\":null}"
+					document.getElementById("show_result").innerHTML = "Other than OFAddress and Exam_id, are all required input"
+				}
+				else if (x == "patient-GET"){
+					document.getElementById("show_result").innerHTML = "please enter the patient HID to get patient information"
+					document.getElementById("postInput").value = ""
+				}
+				else if (x == "patient-PUT"){
+					document.getElementById("postInput").value = ""
+					document.getElementById("show_result").innerHTML = "please enter the patient's HID that you want to change in the first text box <br> Then, enter the information in the second text box <br> all field are required, except WID and IID"
+					document.getElementById("editInput").value = "{\"HID\":null,\"Age\":null,\"Name\":\"null\",\"Sex\":\"null\",\"Birth_date\":\"2022-04-12T05:01:52Z\",\"WID\":null,\"IID\":null}"
+				}
+				else if (x == "healthhistory-GET"){
+					document.getElementById("show_result").innerHTML = "please enter the patient HID to get patient health history"
+					document.getElementById("postInput").value = ""
+				}
+				else if (x == "healthhistory-PUT"){
+					document.getElementById("postInput").value = ""
+					document.getElementById("show_result").innerHTML ="please enter the patient's HID that you want to change in the first text box <br> Then, enter the information in the second text box <br> all field are required, except OFaddress and Exam_id"
+					document.getElementById("editInput").value = "{\"HID\":null,\"HisDiag\":\"null\",\"VacRec\":\"null\",\"ExamRec\":\"null\",\"OFAddress\":[],\"Exam_id\":null}"
+				}
+				else if (x == "healthhistory-DELETE"){
+					document.getElementById("show_result").innerHTML = "please enter the patient HID to delete patient health history"
+					document.getElementById("postInput").value = ""
+				}
+				else if (x == "diagnosis-POST"){
+					document.getElementById("show_result").innerHTML =  "enter the information in the second text box <br> all field are required, except HID and WID"
+					document.getElementById("postInput").value = "{\"Temp\":null,\"Disease\":\"null\",\"Medication\":\"null\",\"HID\":null,\"WID\":[]}"
+				}
+				else if (x == "diagnosis-GET"){
+					document.getElementById("show_result").innerHTML =  "please enter the patient HID to get diagnosis"
+					document.getElementById("postInput").value = ""
+				}
+				else if (x == "diagnosis-PUT"){
+					document.getElementById("postInput").value = ""
+					document.getElementById("show_result").innerHTML =  "please enter the patient's HID that you want to change in the first text box <br> Then, enter the information in the second text box <br> all field are required, except HID and WID"
+					document.getElementById("editInput").value = "{\"Temp\":null,\"Disease\":\"null\",\"Medication\":\"null\",\"HID\":null,\"WID\":[]}"
+				}
+				else if (x == "medicalexam-GET"){
+					document.getElementById("show_result").innerHTML =  "please enter the exam_id to get the medical exam report"
+					document.getElementById("postInput").value = ""
+				}
+				else if (x == "insurence-GET"){
+					document.getElementById("show_result").innerHTML = "please click submit to get all insurence companies information, or enter the IID to search one spcific company"
+					document.getElementById("postInput").value = ""
+				}
+				else if (x == "doctor-GET"){
+					document.getElementById("show_result").innerHTML = "please enter the WID to get the doctor information"
+					document.getElementById("postInput").value = ""
+				}
+			}			
+			function find_ID(){
+
+				var x = document.getElementById("mySelect").value;//method selection//
+				console.log(x);
+				const val = document.querySelector('input').value;//primary key//
+				console.log("input is :" + val);	
+				
+				//Patient: GET//
+				if (x === "patient-GET"){
+					if (val=='' || val == null || val == " "){
+						$.ajax({			
+							crossDomain: true,
+							type: "GET",
+							url : "http://127.0.0.1:8000/Patient/",
+							dataType: "json",
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = JSON.stringify(data);
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot get the information, please check the HID";
+							}
+						});						
+					}
+					//Patient: GET CASE//
+					else{
+							$.ajax({			
+								crossDomain: true,
+								type: "GET",
+								url : "http://127.0.0.1:8000/Patient/" + val + "/",
+								dataType: "json",
+								success : function (data) {
+										console.log(data);
+										document.getElementById("show_result").innerHTML = JSON.stringify(data);
+										},
+								error:function(error){
+									console.log('Error ${error}')
+									document.getElementById("show_result").innerHTML = "cannot get the information, please check the HID";
+								}
+							});
+						}				
+				}
+
+				//Patient: EDIT//
+				else if (x ==="patient-PUT"){
+					var editVal = document.getElementById("editInput").value;
+					console.log("editing the following: " + editVal);
+					$.ajax({			
+							crossDomain: true,
+							type: "PUT",
+							headers: {
+      						  "content-type": "application/json",
+       						},
+							url : "http://127.0.0.1:8000/Patient/" + val + "/",
+							dataType: "json",
+							data: editVal,
+							success : function (data) {
+									console.log(data);
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot edit the information, please check the HID";
+							}
+					});										
+				}
+				
+				//Health History: GET //
+				else if (x === "healthhistory-GET"){
+					if (val=='' || val == null || val == " "){
+						$.ajax({			
+							crossDomain: true,
+							type: "GET",
+							url : "http://127.0.0.1:8000/PatientHealthHistory/",
+							dataType: "json",
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = JSON.stringify(data);
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot get the information, please check the HID";
+							}
+						});						
+					}
+					//Health History : GET case//
+					else{
+							$.ajax({			
+								crossDomain: true,
+								type: "GET",
+								url : "http://127.0.0.1:8000/PatientHealthHistory/" + val + "/",
+								dataType: "json",
+								success : function (data) {
+										console.log(data);
+										document.getElementById("show_result").innerHTML = JSON.stringify(data);
+										},
+								error:function(error){
+									console.log('Error ${error}')
+									document.getElementById("show_result").innerHTML = "cannot get the information, please check the HID";
+								}
+							});
+						}					
+				}
+				// Health history: DELETE//
+				else if (x ==="healthhistory-DELETE"){
+					$.ajax({			
+								crossDomain: true,
+								type: "DELETE",
+								url : "http://127.0.0.1:8000/PatientHealthHistory/" + val + "/",
+								dataType: "json",
+								success : function (data) {
+										console.log(data);
+										document.getElementById("show_result").innerHTML = JSON.stringify(data);
+										},
+								error:function(error){
+									console.log('Error ${error}')
+									document.getElementById("show_result").innerHTML = "cannot delete the information, please check the HID";
+								}
+					});
+				}
+				
+				//Health history: POST//
+				else if (x === "healthhistory-POST"){
+					$.ajax({			
+							crossDomain: true,
+							type: "POST",
+							headers: {
+      						  "content-type": "application/json",
+       						},
+							url : "http://127.0.0.1:8000/PatientHealthHistory/",
+							dataType: "json",
+							data: val,
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = "information has been successfully posted it";
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot post the information, please check the HID";
+							}
+					});			
+				}
+			
+				//Health history : DELETE//
+				else if (x ==="healthhistory-PUT"){
+					var editVal = document.getElementById("editInput").value;
+					console.log("editing the following: " + editVal);
+					$.ajax({			
+							crossDomain: true,
+							type: "PUT",
+							headers: {
+      						  "content-type": "application/json",
+       						},
+							url : "http://127.0.0.1:8000/PatientHealthHistory/" + val + "/",
+							dataType: "json",
+							data: editVal,
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = "information has been successfully delete it";
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot delete the information, please check the HID";
+							}
+					});										
+				}
+			
+				//Diagnosis : GET//
+				else if (x === "diagnosis-GET"){
+					if (val=='' || val == null || val == " "){
+						$.ajax({			
+							crossDomain: true,
+							type: "GET",
+							url : "http://127.0.0.1:8000/Diagnosis/",
+							dataType: "json",
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = JSON.stringify(data);
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot get the information, please check the HID";
+							}
+						});						
+					}
+					//Diagnosis : GET case//
+					else{
+							$.ajax({			
+								crossDomain: true,
+								type: "GET",
+								url : "http://127.0.0.1:8000/test2/" + val + "/",
+								dataType: "json",
+								success : function (data) {
+										console.log(data);
+										document.getElementById("show_result").innerHTML = JSON.stringify(data);
+										},
+								error:function(error){
+									console.log('Error ${error}')
+									document.getElementById("show_result").innerHTML = "cannot get the information, please check the HID";
+								}
+							});
+						}					
+				}				
+				//Diagnosis : Delete
+				else if (x ==="diagnosis-DELETE"){
+					$.ajax({			
+								crossDomain: true,
+								type: "DELETE",
+								url : "http://127.0.0.1:8000/Diagnosis/" + val + "/",
+								dataType: "json",
+								success : function (data) {
+										console.log(data);
+										document.getElementById("show_result").innerHTML = JSON.stringify(data);
+										},
+								error:function(error){
+									console.log('Error ${error}')
+									document.getElementById("show_result").innerHTML = "cannot delete the information, please check the HID";
+								}
+					});
+				}
+				
+				//Diagnosis : POST//
+				else if (x === "diagnosis-POST"){
+					$.ajax({			
+							crossDomain: true,
+							type: "POST",
+							headers: {
+      						  "content-type": "application/json",
+       						},
+							url : "http://127.0.0.1:8000/Diagnosis/",
+							dataType: "json",
+							data: val,
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = "diagnosis has been successfully posted";
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot post the information, please check the HID";
+							}
+					});			
+				}
+			
+				//Diagnosis : PUT//
+				else if (x ==="diagnosis-PUT"){
+					var editVal = document.getElementById("editInput").value;
+					console.log("editing the following: " + editVal);
+					$.ajax({			
+							crossDomain: true,
+							type: "PUT",
+							headers: {
+      						  "content-type": "application/json",
+       						},
+							url : "http://127.0.0.1:8000/Diagnosis/" + val + "/",
+							dataType: "json",
+							data: editVal,
+							success : function (data) {
+									console.log(data);
+									document.getElementById("show_result").innerHTML = "diagnosis has been successfully edited";
+									},
+							error:function(error){
+								console.log('Error ${error}')
+								document.getElementById("show_result").innerHTML = "cannot edit the information, please check the HID";
+							}
+					});										
+				}
+			
+			}
+
+
+
+
+
+  			</script>
+
+	</body>
+</html>
